@@ -27,7 +27,7 @@ b₁ = read_batch(images₁) |> gpu
 b₂ = read_batch(images₂) |> gpu
 
 # CONFIG ------ 
-lr_g = 2e-1          # Learning rate of the generator network
+lr_g = 1          # Learning rate of the generator network
 lr_d = 1 # 2e-1          # Learning rate of the discriminator network
 batch_size = 1    # batch size
 num_epochs = 30  # Number of epochs to train for
@@ -67,11 +67,13 @@ for n in 1:num_epochs
 
         # Discriminate 2    
         fake_image₂ = g2(real_image₁)
-        l = train_discriminator!(d2, opt_dscr₂, real_image₂, fake_image₂)
-        @info "Loss Discriminator 2 : $l"
+        #l = train_discriminator!(d2, opt_dscr₂, real_image₂, fake_image₂)
+        #@info "Loss Discriminator 2 : $l"
 
 
         Display(fake_image₂, 2)
+        sleep(2)
+        Display(real_image₁, 2)
 
         sleep(15)
         #* CYCLE CONSISTENCY
